@@ -20,6 +20,15 @@ public class EmployeepayrollService {
 		service.readEmployeeData(consoleInputReader);
 		service.printData(IOService.CONSOLE_IO);
 		service.writeEmployeeData(employee,IOService.FILE_IO);
+		service.printCount(employee,IOService.FILE_IO);
+	}
+
+	private void printCount(List<Employee> employee2, IOService ioService) {
+		if (ioService.equals(IOService.CONSOLE_IO)) {
+			System.out.println("\n Writing Employee PayRoll Details on Console:\n" +this.employee);
+		}else if(ioService.equals(IOService.FILE_IO)) {
+			new EmployeeFileIO().getCountOfRecord();
+		}
 	}
 
 	private void printData(IOService ioService) {

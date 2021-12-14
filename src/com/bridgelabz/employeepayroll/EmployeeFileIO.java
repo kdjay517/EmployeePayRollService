@@ -34,4 +34,14 @@ public class EmployeeFileIO {
 			// TODO: handle exception
 		}
 	}
+	
+	public long getCountOfRecord() {
+		long count = 0;
+		try {
+			count = Files.lines(new File(HOME).toPath()).count();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
 }
