@@ -18,11 +18,25 @@ public class EmployeepayrollService {
 		EmployeepayrollService service = new EmployeepayrollService(employee);
 		Scanner consoleInputReader = new Scanner(System.in);
 		service.readEmployeeData(consoleInputReader);
-		service.writeEmployeeData(employee);
+		service.printData(IOService.CONSOLE_IO);
+		service.writeEmployeeData(employee,IOService.FILE_IO);
 	}
 
-	private void writeEmployeeData(List<Employee> employee) {
-		System.out.println("\n Writing Employee PayRoll Details on Console:\n" +this.employee);
+	private void printData(IOService ioService) {
+		if (ioService.equals(IOService.CONSOLE_IO)) {
+			System.out.println("\n Writing Employee PayRoll Details on Console:\n" +this.employee);
+		}else if(ioService.equals(IOService.FILE_IO)) {
+			new EmployeeFileIO().printData();
+		}
+	}
+
+	private void writeEmployeeData(List<Employee> employee,IOService ioService) {
+		
+		if (ioService.equals(IOService.CONSOLE_IO)) {
+			System.out.println("\n Writing Employee PayRoll Details on Console:\n" +this.employee);
+		}else if(ioService.equals(IOService.FILE_IO)) {
+			new EmployeeFileIO().writeDateIntoFile(employee);
+		}
 	}
 
 	private void readEmployeeData(Scanner consoleInputReader) {
